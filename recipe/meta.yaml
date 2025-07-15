@@ -1,5 +1,5 @@
 {% set name = "weaviate-client" %}
-{% set version = "4.15.4" %}
+{% set version = "4.16.0" %}
 
 package:
   name: {{ name|lower }}
@@ -7,7 +7,7 @@ package:
 
 source:
   url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/weaviate_client-{{ version }}.tar.gz
-  sha256: 005e7a6cee52ff4ac66f244a572b5ed98dd0e15bfda380979a88fddf692720df
+  sha256: a6d8801ad68a9dc6757a83f20f67412e9e7318c479caeca5838109b2b759cd03
 
 build:
   noarch: python
@@ -23,7 +23,7 @@ requirements:
   run:
     - python >={{ python_min }}
     - httpx >=0.26.0,<0.29.0
-    - validators ==0.34.0
+    - validators >=0.34.0,<1.0.0
     - authlib >=1.2.1,<2.0.0
     - pydantic >=2.8.0,<3.0.0
     - grpcio >=1.66.2,<2.0.0
