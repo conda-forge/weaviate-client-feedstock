@@ -1,5 +1,5 @@
 {% set name = "weaviate-client" %}
-{% set version = "4.18.0" %}
+{% set version = "4.18.1" %}
 
 package:
   name: {{ name|lower }}
@@ -7,7 +7,7 @@ package:
 
 source:
   url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/weaviate_client-{{ version }}.tar.gz
-  sha256: 12e04e3361884191a82aff7a8b6e8f5ead7e8bf6f2c09e03d46a67347b4a0f9b
+  sha256: df682f7e91b51ac4428d85a092297203ab688a532851ac11f855a97ea85b7283
 
 build:
   noarch: python
