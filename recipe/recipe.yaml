@@ -1,0 +1,53 @@
+schema_version: 1
+
+context:
+  name: weaviate-client
+  version: 4.19.3
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/weaviate_client-${{ version }}.tar.gz
+  sha256: bcd5fb8959ed15f006c09c1c2e50d44bccafc96a874107951986bcd11462e01d
+
+build:
+  number: 1
+  noarch: python
+  script: ${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
+
+requirements:
+  host:
+    - python ${{ python_min }}.*
+    - setuptools >=65
+    - setuptools-scm >6.2
+    - pip
+  run:
+    - python >=${{ python_min }}
+    - httpx >=0.26.0,<0.29.0
+    - validators >=0.34.0,<1.0.0
+    - authlib >=1.6.5,<2.0.0
+    - pydantic >=2.12.0,<3.0.0
+    - grpcio >=1.59.5,<1.80.0
+    - deprecation >=2.1.0,<3.0.0
+    - protobuf >=4.21.6,<7.0.0
+
+tests:
+  - python:
+      imports:
+        - weaviate
+      pip_check: true
+      python_version: ${{ python_min }}.*
+
+about:
+  summary: A python native Weaviate client
+  license: BSD-3-Clause
+  license_file: LICENSE
+  homepage: https://github.com/weaviate/weaviate-python-client
+  repository: https://github.com/weaviate/weaviate-python-client
+  documentation: https://weaviate.io/developers/weaviate/client-libraries/python
+
+extra:
+  recipe-maintainers:
+    - xylar
