@@ -2,7 +2,7 @@ schema_version: 1
 
 context:
   name: weaviate-client
-  version: "4.20.2"
+  version: 4.20.3
 
 package:
   name: ${{ name|lower }}
@@ -10,7 +10,7 @@ package:
 
 source:
   url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/weaviate_client-${{ version }}.tar.gz
-  sha256: 09bfdb691377117d282d149834ee5ec73b15799088700162776ffcccdfa03a68
+  sha256: 0d9eaff8ec556af1b0c10a245ed08e07c8656ce7f224c65b1e76c0e6635191f3
 
 build:
   number: 0
@@ -27,12 +27,11 @@ requirements:
     - python >=${{ python_min }}
     - httpx >=0.26.0,<0.29.0
     - validators >=0.34.0,<1.0.0
-    - authlib >=1.6.5,<2.0.0
+    - authlib >=1.6.7,<2.0.0
     - pydantic >=2.12.0,<3.0.0
     - grpcio >=1.59.5,<1.80.0
     - deprecation >=2.1.0,<3.0.0
     - protobuf >=4.21.6,<7.0.0
-
 tests:
   - python:
       imports:
