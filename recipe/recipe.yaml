@@ -2,7 +2,7 @@ schema_version: 1
 
 context:
   name: weaviate-client
-  version: 4.20.5
+  version: "4.21.0"
 
 package:
   name: ${{ name|lower }}
@@ -10,7 +10,7 @@ package:
 
 source:
   url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/weaviate_client-${{ version }}.tar.gz
-  sha256: c07c688f0e6b78723dfecbcfeebf897cefa75f1a89c63ebd84aab88c662e4394
+  sha256: 050243b07f80349bbbaa3d426ace38466a972a073eff5cff62708ae5e9287dbe
 
 build:
   number: 0
