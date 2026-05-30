@@ -2,7 +2,7 @@ schema_version: 1
 
 context:
   name: weaviate-client
-  version: "4.21.0"
+  version: 4.21.2
 
 package:
   name: ${{ name|lower }}
@@ -10,7 +10,7 @@ package:
 
 source:
   url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/weaviate_client-${{ version }}.tar.gz
-  sha256: 050243b07f80349bbbaa3d426ace38466a972a073eff5cff62708ae5e9287dbe
+  sha256: 812dfe20bf8f15113578479985ef8fc19213df00cfe1c55f4766520f11543486
 
 build:
   number: 0
@@ -27,12 +27,11 @@ requirements:
     - python >=${{ python_min }}
     - httpx >=0.26.0,<0.29.0
     - validators >=0.34.0,<1.0.0
-    # 1.7.0 currently is missing joserfc
-    # https://github.com/conda-forge/authlib-feedstock/pull/46
-    - authlib >=1.6.7,<2.0.0,!=1.7.0
+    - authlib >=1.6.7,<2.0.0
     - pydantic >=2.12.0,<3.0.0
     - grpcio >=1.59.5,<1.80.0
     - protobuf >=4.21.6,<7.0.0
+    - packaging >=21.0
 tests:
   - python:
       imports:
