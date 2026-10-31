@@ -2,20 +2,30 @@ schema_version: 1
 
 context:
   name: weaviate-client
-  version: "4.23.1"
+  version: "4.24.1"
 
 package:
   name: ${{ name|lower }}
   version: ${{ version }}
 
 source:
-  url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/weaviate_client-${{ version }}.tar.gz
-  sha256: 0c0f249b5a5b813d7e98d9eb33e17a0eb06a3bff047de23a3e41311aa82feb0d
+  # 4.24.0 and 4.24.1 were published to PyPI as wheels only, so build from the GitHub tag
+  url: https://github.com/weaviate/weaviate-python-client/archive/refs/tags/v${{ version }}.tar.gz
+  sha256: 7987b198a838b65f4d3056aac3f2cd7fda3bbbf065998b87e5821ad2a182c1c5
 
 build:
   number: 0
   noarch: python
-  script: ${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
+  script:
+    env:
+      # the GitHub tarball has no git metadata for setuptools-scm
+      SETUPTOOLS_SCM_PRETEND_VERSION: ${{ version }}
+    content:
+      # setup.cfg lists only top-level packages and relies on the setuptools-scm
+      # git file finder (include_package_data) to ship subpackages such as
+      # weaviate/proto/v1/v6300; without git metadata, a MANIFEST.in does that job
+      - echo "graft weaviate" > MANIFEST.in
+      - ${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
 
 requirements:
   host:
@@ -28,8 +38,9 @@ requirements:
   run:
     - python >=${{ python_min }}
     - httpx >=0.26.0,<0.29.0
+    - certifi >=2026.10.19
     - validators >=0.34.0,<1.0.0
-    - authlib >=1.6.7,<2.0.0
+    - authlib >=1.7.1,<2.0.0
     - pydantic >=2.12.0,<3.0.0
     - grpcio >=1.59.5,<1.80.0
     - protobuf >=4.21.6,<7.0.0
