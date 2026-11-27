@@ -2,7 +2,7 @@ schema_version: 1
 
 context:
   name: weaviate-client
-  version: "4.24.1"
+  version: "4.25.0"
 
 package:
   name: ${{ name|lower }}
@@ -11,7 +11,7 @@ package:
 source:
   # 4.24.0 and 4.24.1 were published to PyPI as wheels only, so build from the GitHub tag
   url: https://github.com/weaviate/weaviate-python-client/archive/refs/tags/v${{ version }}.tar.gz
-  sha256: 7987b198a838b65f4d3056aac3f2cd7fda3bbbf065998b87e5821ad2a182c1c5
+  sha256: 61128f9d453ba17316e35b2c36297158c04780d7687f0e6dfd719413a60b6c3f
 
 build:
   number: 0
@@ -34,7 +34,7 @@ requirements:
     - setuptools >=65
     # setuptools_scm[toml] needs nothing extra on conda-forge
     - setuptools-scm >6.2
-    - wheel >=0.38.1
+    - wheel >=0.47.0
   run:
     - python >=${{ python_min }}
     - httpx >=0.26.0,<0.29.0
@@ -42,8 +42,8 @@ requirements:
     - validators >=0.34.0,<1.0.0
     - authlib >=1.7.1,<2.0.0
     - pydantic >=2.12.0,<3.0.0
-    - grpcio >=1.59.5,<1.80.0
-    - protobuf >=4.21.6,<7.0.0
+    - grpcio >=1.59.5,<2.0.0
+    - protobuf >=4.21.6,<8.0.0
     - packaging >=21.0
 tests:
   - python:
